@@ -12,7 +12,7 @@ let repuestos = [
     { id: 10, nombre: 'Ventilador', precio: 75000, descuento: 0 }
 ];
 
-let carrito = [];
+let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
 // Mostrar productos
 function mostrarProductos(productos = repuestos) {
@@ -36,6 +36,7 @@ function mostrarProductos(productos = repuestos) {
 function agregarAlCarrito(id) {
     let repuesto = repuestos.find(r => r.id === id);
     carrito.push(repuesto);
+    localStorage.setItem('carrito', JSON.stringify(carrito));
 
     Swal.fire({
         icon: 'success',
@@ -52,11 +53,12 @@ function agregarAlCarrito(id) {
     });
 }
 
-// Función para eliminar un producto del carritocon SweetAlert2
+// Función para eliminar un producto del carrito
 function eliminarDelCarrito(id) {
     let index = carrito.findIndex(r => r.id === id);
     if (index !== -1) {
         let [repuesto] = carrito.splice(index, 1);
+        localStorage.setItem('carrito', JSON.stringify(carrito));
 
         Swal.fire({
             icon: 'success',
@@ -121,10 +123,10 @@ function mostrarCarrito() {
 
     Swal.fire({
         icon: 'info',
-        title: '\nProductos en tu carrito\n',
+        title: 'Productos en tu carrito',
         text: mensaje,
         input: 'text',
-        inputPlaceholder: '\nIngresa el número del producto\n',
+        inputPlaceholder: 'Ingresa el número del producto',
         confirmButtonText: 'Aceptar',
         showCancelButton: true,
         cancelButtonText: 'Cancelar',
@@ -169,5 +171,4 @@ function filtrarProductos() {
     mostrarProductos(productosFiltrados);
 }
 
-// Accion!
 mostrarProductos();
