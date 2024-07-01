@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #333333; 
+    font-family: Arial, sans-serif;
+    color: #ffffff; 
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    color: #e74c3c; 
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+#buscar {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+    font-size: 16px;
+    border: 1px solid #ffffff; 
+    border-radius: 5px;
+    background-color: #444444; 
+    color: #ffffff; 
+}
+
+#productos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.producto {
+    border: 1px solid #ffffff; 
+    border-radius: 5px;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    background-color: #555555; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.producto:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.producto h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #e74c3c; 
+}
+
+.producto p {
+    font-size: 1em;
+    margin: 5px 0;
+    color: #ffffff; 
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #e74c3c; 
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+button:hover {
+    background-color: #c0392b; 
+    transform: scale(1.05);
+}
+
+
+.cssdepopup {
+    background-color: #373B43; 
+    color: #FAF3DD; 
+    border-radius: 5px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+.cssdelheader {
+    text-align: center; 
+    color: #E61D0F; 
+    font-size: 1.5em; 
+}
+
+.cssdeltitulo {
+    font-size: 1.2em; 
+}
+
+.cssdelcontenido {
+    font-size: 1em; 
+}
+
+.cssdelboton {
+    background-color: #E61D0F; 
+    color: #FAF3DD; 
+    border-radius: 5px; 
+    padding: 10px 20px; 
+    transition: background-color 0.2s, transform 0.2s; 
+}
+
+.cssdelboton:hover {
+    background-color: #AE1309; 
+    transform: scale(1.05); 
+}
