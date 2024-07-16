@@ -1,21 +1,14 @@
-// Repuestos
-let repuestos = [
-    { id: 1, nombre: 'Disco Duro', precio: 200000, descuento: 0 },
-    { id: 2, nombre: 'Memoria RAM', precio: 80000, descuento: 0 },
-    { id: 3, nombre: 'Tarjeta Gráfica', precio: 500000, descuento: 10 },
-    { id: 4, nombre: 'Procesador', precio: 350000, descuento: 15 },
-    { id: 5, nombre: 'Fuente de Poder', precio: 120000, descuento: 0 },
-    { id: 6, nombre: 'Placa Madre', precio: 150000, descuento: 5 },
-    { id: 7, nombre: 'Monitor', precio: 300000, descuento: 0 },
-    { id: 8, nombre: 'Teclado', precio: 50000, descuento: 0 },
-    { id: 9, nombre: 'Mouse', precio: 45000, descuento: 0 },
-    { id: 10, nombre: 'Ventilador', precio: 75000, descuento: 0 }
-];
-
 let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-// Mostrar productos
-function mostrarProductos(productos = repuestos) {
+fetch('js/repuestos.json')
+    .then(response => response.json())
+    .then(repuestos => {
+        mostrarProductos(repuestos);
+        window.repuestos = repuestos;
+    })
+    .catch(error => console.error('Error al cargar los repuestos:', error));
+
+function mostrarProductos(productos) {
     let productosDiv = document.getElementById('productos');
     productosDiv.innerHTML = '';
 
@@ -23,6 +16,7 @@ function mostrarProductos(productos = repuestos) {
         let productoDiv = document.createElement('div');
         productoDiv.classList.add('producto');
         productoDiv.innerHTML = `
+            <img src="${repuesto.imagen}" alt="${repuesto.nombre}" />
             <h2>${repuesto.nombre}</h2>
             <p>Precio: $${repuesto.precio}</p>
             <p>Descuento: ${repuesto.descuento}%</p>
@@ -32,9 +26,8 @@ function mostrarProductos(productos = repuestos) {
     });
 }
 
-// Función para agregar al carrito
 function agregarAlCarrito(id) {
-    let repuesto = repuestos.find(r => r.id === id);
+    let repuesto = window.repuestos.find(r => r.id === id);
     carrito.push(repuesto);
     localStorage.setItem('carrito', JSON.stringify(carrito));
 
@@ -53,7 +46,6 @@ function agregarAlCarrito(id) {
     });
 }
 
-// Función para eliminar un producto del carrito
 function eliminarDelCarrito(id) {
     let index = carrito.findIndex(r => r.id === id);
     if (index !== -1) {
@@ -90,7 +82,6 @@ function eliminarDelCarrito(id) {
     }
 }
 
-// Función para mostrar el carrito y calcular el total
 function mostrarCarrito() {
     if (carrito.length === 0) {
         Swal.fire({
@@ -162,13 +153,12 @@ function mostrarCarrito() {
     });
 }
 
-// Función para filtrar productos
 function filtrarProductos() {
     let busqueda = document.getElementById('buscar').value.toLowerCase();
-    let productosFiltrados = repuestos.filter(repuesto =>
+    let productosFiltrados = window.repuestos.filter(repuesto =>
         repuesto.nombre.toLowerCase().includes(busqueda)
     );
     mostrarProductos(productosFiltrados);
 }
 
-mostrarProductos();
+
